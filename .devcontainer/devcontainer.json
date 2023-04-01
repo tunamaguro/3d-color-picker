@@ -15,7 +15,8 @@
 		"vscode": {
 			"extensions": [
 				"rome.rome",
-				"mhutchie.git-graph"
+				"mhutchie.git-graph",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	},
