@@ -9,7 +9,7 @@ export function Sphere({ ...props }: Props) {
 
 	return (
 		<mesh {...props} ref={mesh}>
-			<sphereGeometry args={[3, 12, 12]} />
+			<sphereGeometry args={[1, 12, 12]} />
 			<meshStandardMaterial wireframe={true} color={"orange"} />
 		</mesh>
 	);
