@@ -7,14 +7,20 @@ import { Box } from "./components/Box";
 
 const baseR = 20;
 const rads = range(0, 2 * Math.PI, Math.PI / 10);
-const turn = range(0, 360, 40);
-const circle = turn.flatMap((theta) =>
-	rads.map((rad) => {
-		const x = Math.cos(rad) * baseR;
-		const y = Math.sin(rad) * baseR;
-		const z = 0;
-		const pos = new XyzCoord(x, y, z).turn_Xaxis(theta);
-		return pos;
+const circle = rads.map((rad) => {
+	const x = Math.cos(rad) * baseR;
+	const y = Math.sin(rad) * baseR;
+	const z = 0;
+	const pos = new XyzCoord(x, y, z);
+	return pos;
+});
+
+const onionRads = [0, 45, 70];
+const onion = onionRads.flatMap((theta) =>
+	circle.map((xyz) => {
+		const turned = xyz.turn_Yaxis(theta);
+		const [u, v, _] = turned.to_vec();
+		return new XyzCoord(u, v, 0);
 	}),
 );
 
@@ -25,7 +31,7 @@ function App() {
 			<OrbitControls />
 			<pointLight position={[10, 10, 10]} />
 			<Box />
-			{circle.map((pos) => (
+			{onion.map((pos) => (
 				<Sphere position={pos.to_vec()} />
 			))}
 		</Canvas>
