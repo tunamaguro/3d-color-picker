@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { XyzCoord, HslCoord } from "./index";
+import { XyzCoord, HslCoord, RgbCoord } from "./index";
 
 describe("coord", () => {
 	const deg2rad = Math.PI / 180;
@@ -89,6 +89,23 @@ describe("coord", () => {
 			expect(r).toBe(254);
 			expect(g).toBe(230);
 			expect(b).toBe(234);
+		});
+	});
+
+	describe("rgbを16進数に変換", () => {
+		it("#ff0000は0xff0000になる", () => {
+			const hex = new RgbCoord(0xff, 0x00, 0x00).to_hex();
+			expect(hex).toBe(0xff0000);
+		});
+
+		it("#64b4faは0x64b4faになる", () => {
+			const hex = new RgbCoord(0x64, 0xb4, 0xfa).to_hex();
+			expect(hex).toBe(0x64b4fa);
+		});
+
+		it("#0f1405は0x0f1405になる", () => {
+			const hex = new RgbCoord(0x0f, 0x14, 0x05).to_hex();
+			expect(hex).toBe(0x0f1405);
 		});
 	});
 });
