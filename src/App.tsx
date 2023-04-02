@@ -5,28 +5,28 @@ import range from "just-range";
 import { XyzCoord } from "./coord";
 import { Box } from "./components/Box";
 
-const baseR = 20;
-const rads = range(0, 2 * Math.PI, Math.PI / 10);
+const baseR = 10;
+const rads = range(0, 2 * Math.PI, Math.PI / 20);
 const circle = rads.map((rad) => {
 	const x = Math.cos(rad) * baseR;
 	const y = Math.sin(rad) * baseR;
 	const z = 0;
-	const pos = new XyzCoord(x, y, z);
+	const pos = new XyzCoord(x, y, z).turn_Xaxis(90);
 	return pos;
 });
 
-const onionRads = [0, 45, 75];
+const onionRads = [0, 45, 60, 75];
 const onion = onionRads.flatMap((theta) =>
 	circle.map((xyz) => {
-		const [_x, _y, z] = xyz.to_vec();
-		const [u, v, _w] = xyz.turn_Yaxis(theta).to_vec();
-		return new XyzCoord(u, v, z);
+		const [_x, y, _z] = xyz.to_vec();
+		const [u, _v, w] = xyz.turn_Zaxis(theta).to_vec();
+		return new XyzCoord(u, y, w);
 	}),
 );
 
-const turn = range(0, 360, 40);
+const turn = range(0, 360, 15);
 const sphere = turn.flatMap((theta) =>
-	onion.map((xyz) => xyz.turn_Yaxis(theta)),
+	onion.map((xyz) => xyz.turn_Zaxis(theta)),
 );
 
 function App() {
@@ -34,10 +34,14 @@ function App() {
 		<Canvas style={{ width: window.innerWidth, height: window.innerHeight }}>
 			<ambientLight />
 			<OrbitControls />
+			<axesHelper args={[20]} />
 			<pointLight position={[10, 10, 10]} />
 			<Box />
 			{sphere.map((pos) => (
-				<Sphere position={pos.to_vec()} />
+				<Sphere
+					position={pos.to_vec()}
+					color={pos.to_hsl().to_rgb().to_hex()}
+				/>
 			))}
 		</Canvas>
 	);

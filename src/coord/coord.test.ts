@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { XyzCoord, HslCoord } from "./index";
+import { XyzCoord, HslCoord, RgbCoord } from "./index";
 
 describe("coord", () => {
 	const deg2rad = Math.PI / 180;
@@ -55,6 +55,57 @@ describe("coord", () => {
 			expect(x).toBeCloseTo(-3.7, 1);
 			expect(y).toBeCloseTo(-2.6, 1);
 			expect(z).toBeCloseTo(4, 1);
+		});
+	});
+
+	describe("hslからrgbへの変換", () => {
+		it("h0s100l50はr255g0b0になる", () => {
+			const [r, g, b] = new HslCoord(0, 100, 50).to_rgb().to_vec();
+
+			expect(r).toBe(255);
+			expect(g).toBe(0);
+			expect(b).toBe(0);
+		});
+
+		it("h180s75l20はr13g89b89になる", () => {
+			const [r, g, b] = new HslCoord(180, 75, 20).to_rgb().to_vec();
+
+			expect(r).toBe(13);
+			expect(g).toBe(89);
+			expect(b).toBe(89);
+		});
+
+		it("h120s30l20はr36g66b36になる", () => {
+			const [r, g, b] = new HslCoord(120, 30, 20).to_rgb().to_vec();
+
+			expect(r).toBe(36);
+			expect(g).toBe(66);
+			expect(b).toBe(36);
+		});
+
+		it("h350s95l95はr254g230b234になる", () => {
+			const [r, g, b] = new HslCoord(350, 95, 95).to_rgb().to_vec();
+
+			expect(r).toBe(254);
+			expect(g).toBe(230);
+			expect(b).toBe(234);
+		});
+	});
+
+	describe("rgbを16進数に変換", () => {
+		it("#ff0000は0xff0000になる", () => {
+			const hex = new RgbCoord(0xff, 0x00, 0x00).to_hex();
+			expect(hex).toBe(0xff0000);
+		});
+
+		it("#64b4faは0x64b4faになる", () => {
+			const hex = new RgbCoord(0x64, 0xb4, 0xfa).to_hex();
+			expect(hex).toBe(0x64b4fa);
+		});
+
+		it("#0f1405は0x0f1405になる", () => {
+			const hex = new RgbCoord(0x0f, 0x14, 0x05).to_hex();
+			expect(hex).toBe(0x0f1405);
 		});
 	});
 });

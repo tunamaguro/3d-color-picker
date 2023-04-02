@@ -88,4 +88,80 @@ export class HslCoord implements Coord {
 		const z = ((this.#l * 2) / 100 - 1) * baseR;
 		return new XyzCoord(x, y, z);
 	}
+
+	/**
+	 * @ref https://en.wikipedia.org/wiki/HSL_and_HSV
+	 */
+	to_rgb(): RgbCoord {
+		const s = this.#s / 100;
+		const l = this.#l / 100;
+
+		const c = (1 - Math.abs(2 * l - 1)) * s;
+
+		const hDash = this.#h / 60;
+		const x = c * (1 - Math.abs((hDash % 2) - 1));
+		const m = l - c / 2;
+
+		let r1 = 0;
+		let g1 = 0;
+		let b1 = 0;
+
+		if (0 <= hDash && hDash < 1) {
+			r1 = c;
+			g1 = x;
+			b1 = 0;
+		} else if (1 <= hDash && hDash < 2) {
+			r1 = x;
+			g1 = c;
+			b1 = 0;
+		} else if (2 <= hDash && hDash < 3) {
+			r1 = 0;
+			g1 = c;
+			b1 = x;
+		} else if (3 <= hDash && hDash < 4) {
+			r1 = 0;
+			g1 = x;
+			b1 = c;
+		} else if (4 <= hDash && hDash < 5) {
+			r1 = x;
+			g1 = 0;
+			b1 = c;
+		} else if (5 <= hDash && hDash < 6) {
+			r1 = c;
+			g1 = 0;
+			b1 = x;
+		}
+		const [r, g, b] = [r1, g1, b1].map((v) => Math.round((v + m) * 255));
+		return new RgbCoord(r, g, b);
+	}
+}
+
+export class RgbCoord implements Coord {
+	#r: number;
+	#g: number;
+	#b: number;
+	static mult = 0x100;
+	constructor(r: number, g: number, b: number) {
+		this.#r = r;
+		this.#g = g;
+		this.#b = b;
+	}
+
+	to_vec(): Vec3 {
+		return [this.#r, this.#g, this.#b];
+	}
+
+	to_hex(): number {
+		const r = this.#r * RgbCoord.mult ** 2;
+		const g = this.#g * RgbCoord.mult;
+		const b = this.#b;
+		const rgb = r + g + b;
+		return rgb;
+	}
+
+	to_str(): string {
+		const hex = this.to_hex().toString(16);
+
+		return `#${hex}`;
+	}
 }
