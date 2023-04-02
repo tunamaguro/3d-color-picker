@@ -15,13 +15,18 @@ const circle = rads.map((rad) => {
 	return pos;
 });
 
-const onionRads = [0, 45, 70];
+const onionRads = [0, 45, 75];
 const onion = onionRads.flatMap((theta) =>
 	circle.map((xyz) => {
-		const turned = xyz.turn_Yaxis(theta);
-		const [u, v, _] = turned.to_vec();
-		return new XyzCoord(u, v, 0);
+		const [_x, _y, z] = xyz.to_vec();
+		const [u, v, _w] = xyz.turn_Yaxis(theta).to_vec();
+		return new XyzCoord(u, v, z);
 	}),
+);
+
+const turn = range(0, 360, 40);
+const sphere = turn.flatMap((theta) =>
+	onion.map((xyz) => xyz.turn_Yaxis(theta)),
 );
 
 function App() {
@@ -31,7 +36,7 @@ function App() {
 			<OrbitControls />
 			<pointLight position={[10, 10, 10]} />
 			<Box />
-			{onion.map((pos) => (
+			{sphere.map((pos) => (
 				<Sphere position={pos.to_vec()} />
 			))}
 		</Canvas>

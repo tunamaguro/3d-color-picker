@@ -1,4 +1,4 @@
-import { ThreeElements, useFrame } from "@react-three/fiber";
+import { ThreeElements } from "@react-three/fiber";
 import { useRef } from "react";
 import { Mesh } from "three";
 
@@ -9,7 +9,7 @@ export function Sphere({ ...props }: Props) {
 
 	return (
 		<mesh {...props} ref={mesh}>
-			<sphereGeometry args={[1, 12, 12]} />
+			<sphereGeometry args={[0.3, 12, 12]} />
 			<meshStandardMaterial wireframe={true} color={"orange"} />
 		</mesh>
 	);
