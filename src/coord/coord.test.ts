@@ -57,4 +57,38 @@ describe("coord", () => {
 			expect(z).toBeCloseTo(4, 1);
 		});
 	});
+
+	describe("hslからrgbへの変換", () => {
+		it("h0s100l50はr255g0b0になる", () => {
+			const [r, g, b] = new HslCoord(0, 100, 50).to_rgb().to_vec();
+
+			expect(r).toBe(255);
+			expect(g).toBe(0);
+			expect(b).toBe(0);
+		});
+
+		it("h180s75l20はr13g89b89になる", () => {
+			const [r, g, b] = new HslCoord(180, 75, 20).to_rgb().to_vec();
+
+			expect(r).toBe(13);
+			expect(g).toBe(89);
+			expect(b).toBe(89);
+		});
+
+		it("h120s30l20はr36g66b36になる", () => {
+			const [r, g, b] = new HslCoord(120, 30, 20).to_rgb().to_vec();
+
+			expect(r).toBe(36);
+			expect(g).toBe(66);
+			expect(b).toBe(36);
+		});
+
+		it("h350s95l95はr254g230b234になる", () => {
+			const [r, g, b] = new HslCoord(350, 95, 95).to_rgb().to_vec();
+
+			expect(r).toBe(254);
+			expect(g).toBe(230);
+			expect(b).toBe(234);
+		});
+	});
 });
