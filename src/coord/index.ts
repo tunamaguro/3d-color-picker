@@ -1,3 +1,5 @@
+import { turn3d, Matrix3, Vec3 } from "./matrix";
+
 type Coord = {
 	to_vec(): unknown;
 };
@@ -30,6 +32,38 @@ export class XyzCoord implements Coord {
 		const s = (r / baseR) * 100;
 		const l = z * 5 + 50;
 		return new HslCoord(h2, s, l);
+	}
+	turn_Xaxis(theta: number): XyzCoord {
+		const rad = deg2rad * theta;
+		const matrix: Matrix3 = [
+			[1, 0, 0],
+			[0, Math.cos(rad), Math.sin(rad)],
+			[0, -Math.sin(rad), Math.cos(rad)],
+		];
+		const [u, v, w] = turn3d(this.to_vec(), matrix);
+		return new XyzCoord(u, v, w);
+	}
+
+	turn_Yaxis(theta: number): XyzCoord {
+		const rad = deg2rad * theta;
+		const matrix: Matrix3 = [
+			[Math.cos(rad), 0, -Math.sin(rad)],
+			[0, 1, 0],
+			[Math.sin(rad), 0, Math.cos(rad)],
+		];
+		const [u, v, w] = turn3d(this.to_vec(), matrix);
+		return new XyzCoord(u, v, w);
+	}
+
+	turn_Zaxis(theta: number): XyzCoord {
+		const rad = deg2rad * theta;
+		const matrix: Matrix3 = [
+			[Math.cos(rad), Math.sin(rad), 0],
+			[-Math.sin(rad), Math.cos(rad), 0],
+			[0, 0, 1],
+		];
+		const [u, v, w] = turn3d(this.to_vec(), matrix);
+		return new XyzCoord(u, v, w);
 	}
 }
 
