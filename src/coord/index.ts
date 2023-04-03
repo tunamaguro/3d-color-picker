@@ -90,7 +90,7 @@ export class HslCoord implements Coord {
 	}
 
 	/**
-	 * @ref https://en.wikipedia.org/wiki/HSL_and_HSV
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV
 	 */
 	to_rgb(): RgbCoord {
 		const s = this.#s / 100;
@@ -163,5 +163,34 @@ export class RgbCoord implements Coord {
 		const hex = this.to_hex().toString(16);
 
 		return `#${hex}`;
+	}
+	/**
+	 * @see https://en.wikipedia.org/wiki/HSL_and_HSV
+	 */
+	to_hsl(): HslCoord {
+		const [r, g, b] = [this.#r, this.#g, this.#b].map((v) => v / 255);
+		const x_max = Math.max(r, g, b);
+		const x_min = Math.min(r, g, b);
+		const c = x_max - x_min;
+
+		console.log(x_max, x_min, c);
+
+		const l = (x_max + x_min) / 2;
+
+		let h: number = 60;
+		if (c === 0) {
+			h *= 0;
+		} else if (x_max === r) {
+			console.log((g - b) / c);
+			h *= ((g - b) / c) % 6;
+		} else if (x_max === g) {
+			h *= (b - r) / c + 2;
+		} else if (x_max === b) {
+			h *= (r - g) / c + 4;
+		}
+
+		const s = l === 0 || l === 1 ? 0 : (x_max - l) / Math.min(l, 1 - l);
+
+		return new HslCoord(h, s * 100, l * 100);
 	}
 }

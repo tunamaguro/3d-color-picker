@@ -108,4 +108,30 @@ describe("coord", () => {
 			expect(hex).toBe(0x0f1405);
 		});
 	});
+
+	describe("rgbをhslに変換", () => {
+		it("r180g0b0はh0s100l35.3になる", () => {
+			const [h, s, l] = new RgbCoord(180, 0, 0).to_hsl().to_vec();
+
+			expect(h).toBe(0);
+			expect(s).toBe(100);
+			expect(l).toBeCloseTo(35.3, 1);
+		});
+
+		it("r75g120b240はh223.6s84.6l61.8になる", () => {
+			const [h, s, l] = new RgbCoord(75, 120, 240).to_hsl().to_vec();
+
+			expect(h).toBeCloseTo(223.6, 1);
+			expect(s).toBeCloseTo(84.6, 1);
+			expect(l).toBeCloseTo(61.8, 1);
+		});
+
+		it("r30g20b5は36s71.4l6.9になる", () => {
+			const [h, s, l] = new RgbCoord(30, 20, 5).to_hsl().to_vec();
+
+			expect(h).toBeCloseTo(36, 1);
+			expect(s).toBeCloseTo(71.4, 1);
+			expect(l).toBeCloseTo(6.9, 1);
+		});
+	});
 });
