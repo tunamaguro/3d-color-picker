@@ -173,8 +173,6 @@ export class RgbCoord implements Coord {
 		const x_min = Math.min(r, g, b);
 		const c = x_max - x_min;
 
-		console.log(x_max, x_min, c);
-
 		const l = (x_max + x_min) / 2;
 
 		let h: number = 60;
