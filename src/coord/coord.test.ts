@@ -133,5 +133,21 @@ describe("coord", () => {
 			expect(s).toBeCloseTo(71.4, 1);
 			expect(l).toBeCloseTo(6.9, 1);
 		});
+
+		it("r15g255b200はh166.2s100l52.9になる", () => {
+			const [h, s, l] = new RgbCoord(15, 255, 200).to_hsl().to_vec();
+
+			expect(h).toBeCloseTo(166.2, 0);
+			expect(s).toBeCloseTo(100, 1);
+			expect(l).toBeCloseTo(52.9, 1);
+		});
+
+		it("r0g0b0はh0s0l0になる", () => {
+			const [h, s, l] = new RgbCoord(0, 0, 0).to_hsl().to_vec();
+
+			expect(h).toBeCloseTo(0, 1);
+			expect(s).toBeCloseTo(0, 1);
+			expect(l).toBeCloseTo(0, 1);
+		});
 	});
 });
