@@ -38,17 +38,3 @@ $button-border-width: 1px;
     }
 
 }
-
-@keyframes bggradient {
-    0% {
-        background: linear-gradient(45deg, #06b6d4 0%, #38bdf8 50%, #0ea5e9 100%);
-    }
-
-    50% {
-        background: linear-gradient(45deg, #0ea5e9 0%, #06b6d4 50%, #38bdf8 100%);
-    }
-
-    100% {
-        background: linear-gradient(45deg, #38bdf8 0%, #0ea5e9 50%, #06b6d4 100%);
-    }
-}
