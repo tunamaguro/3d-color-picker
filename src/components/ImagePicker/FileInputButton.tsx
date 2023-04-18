@@ -1,8 +1,4 @@
-import {
-	ButtonHTMLAttributes,
-	InputHTMLAttributes,
-	useRef,
-} from "react";
+import { ButtonHTMLAttributes, InputHTMLAttributes, useRef } from "react";
 
 export function useFiles() {
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -24,7 +20,9 @@ type OmittedInputProps = Omit<
 	"type" | "style" | "ref"
 >;
 
-// onClickは常にrefを開くためだけに使用するので入力させない
+/**
+ *  onClickは常にrefを開くためだけに使用するので入力させない
+ */
 type OmittedButtonProps = Omit<
 	ButtonHTMLAttributes<HTMLButtonElement>,
 	"onClick"
