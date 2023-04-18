@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import { FileInputButton } from "./FileInputButton";
 
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
+import { PhotoIcon } from "./PhotoIcon";
 
 export function ImagePicker() {
 	const [files, setFiles] = useState<File[]>([]);
@@ -19,13 +20,14 @@ export function ImagePicker() {
 		<div>
 			<div className={styles.wrapper}>
 				<FileInputButton
-                className={styles.fileButton}
+					className={styles.fileButton}
 					inputProps={{
 						accept: "image/*",
 						onChange: handleFileChange,
 					}}
 				>
-					ファイルを選択
+					<PhotoIcon style={{ width: "2rem", height: "2rem" }} />
+					画像を選択
 				</FileInputButton>
 			</div>
 

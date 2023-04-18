@@ -16,43 +16,39 @@ $button-border-color: #666;
 $button-border-width: 1px;
 
 .fileButton {
-    position: relative;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
     padding: $wrapper-x-padding $wrapper-y-padding;
-    background: transparent;
+
+    color: #ffffff;
+    font-size: large;
+    font-weight: bold;
+
+    background: linear-gradient(45deg, #06b6d4 0%, #38bdf8 50%, #14b8a6 100%);
+    background-size: 200% auto;
     border-width: 0px;
-
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        border-style: solid;
-        border-color: $button-border-color;
-        width: 1rem;
-        height: 1rem;
-        transition: all 0.3s ease-in-out;
-    }
-
-    &::before {
-        top: 0;
-        left: 0;
-        border-bottom: $button-border-width;
-        border-right: $button-border-width;
-    }
-
-    &::after {
-        bottom: 0;
-        right: 0;
-        border-top: $button-border-width;
-        border-left: $button-border-width;
-    }
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
+        background-position: right center;
+    }
 
-        &::before,
-        &::after {
-            height: calc(100% - $button-border-width - 2px);
-            width: calc(100% - $button-border-width - 2px);
-        }
+}
+
+@keyframes bggradient {
+    0% {
+        background: linear-gradient(45deg, #06b6d4 0%, #38bdf8 50%, #0ea5e9 100%);
+    }
+
+    50% {
+        background: linear-gradient(45deg, #0ea5e9 0%, #06b6d4 50%, #38bdf8 100%);
+    }
+
+    100% {
+        background: linear-gradient(45deg, #38bdf8 0%, #0ea5e9 50%, #06b6d4 100%);
     }
 }
