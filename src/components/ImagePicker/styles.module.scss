@@ -1,0 +1,58 @@
+$wrapper-y-padding: 32px;
+$wrapper-x-padding: 16px;
+
+.wrapper {
+    display: grid;
+    justify-content: center;
+    padding: $wrapper-y-padding $wrapper-x-padding ;
+    outline-width: 2px;
+    outline-color: #38bdf8;
+    outline-style: dashed;
+    max-width: 640px;
+}
+
+
+$button-border-color: #666;
+$button-border-width: 1px;
+
+.fileButton {
+    position: relative;
+    cursor: pointer;
+    padding: $wrapper-x-padding $wrapper-y-padding;
+    background: transparent;
+    border-width: 0px;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        border-style: solid;
+        border-color: $button-border-color;
+        width: 1rem;
+        height: 1rem;
+        transition: all 0.3s ease-in-out;
+    }
+
+    &::before {
+        top: 0;
+        left: 0;
+        border-bottom: $button-border-width;
+        border-right: $button-border-width;
+    }
+
+    &::after {
+        bottom: 0;
+        right: 0;
+        border-top: $button-border-width;
+        border-left: $button-border-width;
+    }
+
+    &:hover {
+
+        &::before,
+        &::after {
+            height: calc(100% - $button-border-width - 2px);
+            width: calc(100% - $button-border-width - 2px);
+        }
+    }
+}
