@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { CanvasHTMLAttributes, useEffect, useRef } from "react";
 
 import styles from "./styles.module.scss";
 
@@ -41,9 +41,9 @@ function calcAspect(canvas: RectLike, image: RectLike) {
 
 type ImageCanvasProps = {
 	file: File;
-};
+} & Omit<CanvasHTMLAttributes<HTMLCanvasElement>, "ref">;
 
-export function ImageCanvas({ file }: ImageCanvasProps) {
+export function ImageCanvas({ file, ...rest }: ImageCanvasProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
 	useEffect(() => {
@@ -76,8 +76,13 @@ export function ImageCanvas({ file }: ImageCanvasProps) {
 				height,
 			);
 		}
-
 		setImage();
 	}, []);
-	return <canvas ref={canvasRef} className={styles.canvas} />;
+	return (
+		<canvas
+			{...rest}
+			ref={canvasRef}
+			className={`${styles.canvas} ${rest.className ?? ""}`}
+		/>
+	);
 }
