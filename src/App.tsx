@@ -4,6 +4,9 @@ import { OrbitControls } from "@react-three/drei";
 import range from "just-range";
 import { XyzCoord } from "./coord";
 import { Box } from "./components/Box";
+import { ImagePicker } from "./components/ImagePicker";
+
+import style from "./style.module.scss";
 
 const baseR = 10;
 const rads = range(0, 2 * Math.PI, Math.PI / 20);
@@ -31,19 +34,22 @@ const sphere = turn.flatMap((theta) =>
 
 function App() {
 	return (
-		<Canvas style={{ width: window.innerWidth, height: window.innerHeight }}>
-			<ambientLight />
-			<OrbitControls />
-			<axesHelper args={[20]} />
-			<pointLight position={[10, 10, 10]} />
-			<Box />
-			{sphere.map((pos) => (
-				<Sphere
-					position={pos.to_vec()}
-					color={pos.to_hsl().to_rgb().to_hex()}
-				/>
-			))}
-		</Canvas>
+		<main className={style.container}>
+			<ImagePicker />
+			{/* <Canvas style={{ width: window.innerWidth, height: window.innerHeight }}>
+				<ambientLight />
+				<OrbitControls />
+				<axesHelper args={[20]} />
+				<pointLight position={[10, 10, 10]} />
+				<Box />
+				{sphere.map((pos) => (
+					<Sphere
+						position={pos.to_vec()}
+						color={pos.to_hsl().to_rgb().to_hex()}
+					/>
+				))}
+			</Canvas> */}
+		</main>
 	);
 }
 

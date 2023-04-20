@@ -1,0 +1,45 @@
+$wrapper-y-padding: 32px;
+$wrapper-x-padding: 16px;
+
+.wrapper {
+    display: grid;
+    justify-content: center;
+    padding: $wrapper-y-padding $wrapper-x-padding ;
+    outline-width: 2px;
+    outline-color: #38bdf8;
+    outline-style: dashed;
+    width: auto;
+}
+
+
+$button-border-color: #666;
+$button-border-width: 1px;
+
+.fileButton {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: $wrapper-x-padding $wrapper-y-padding;
+
+    color: #ffffff;
+    font-size: large;
+    font-weight: bold;
+
+    background: linear-gradient(45deg, #06b6d4 0%, #38bdf8 50%, #14b8a6 100%);
+    background-size: 200% auto;
+    border-width: 0px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-position: right center;
+    }
+
+}
+
+.canvas{
+    height: 60vh;
+    width: 100%;
+}
