@@ -6,6 +6,8 @@ import { XyzCoord } from "./coord";
 import { Box } from "./components/Box";
 import { ImagePicker } from "./components/ImagePicker";
 
+import style from "./style.module.scss";
+
 const baseR = 10;
 const rads = range(0, 2 * Math.PI, Math.PI / 20);
 const circle = rads.map((rad) => {
@@ -32,7 +34,7 @@ const sphere = turn.flatMap((theta) =>
 
 function App() {
 	return (
-		<>
+		<main className={style.container}>
 			<ImagePicker />
 			{/* <Canvas style={{ width: window.innerWidth, height: window.innerHeight }}>
 				<ambientLight />
@@ -47,7 +49,7 @@ function App() {
 					/>
 				))}
 			</Canvas> */}
-		</>
+		</main>
 	);
 }
 
