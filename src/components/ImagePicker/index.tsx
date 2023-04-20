@@ -33,7 +33,22 @@ export function ImagePicker() {
 			</div>
 
 			<button onClick={handleFileReset}>リセット</button>
-			{files[0] ? <ImageCanvas file={files[0]} /> : null}
+			{files[0] ? (
+				<ImageCanvas
+					file={files[0]}
+					onClick={(e) => {
+						const rect = e.currentTarget.getBoundingClientRect();
+						const x = e.clientX - rect.left;
+						const y = e.clientY - rect.top;
+
+						const ctx = e.currentTarget.getContext("2d")!;
+						const { data } = ctx?.getImageData(x, y, 1, 1);
+
+						const rgba = { r: data[0], g: data[1], b: data[2] };
+						console.info(rgba);
+					}}
+				/>
+			) : null}
 		</div>
 	);
 }
