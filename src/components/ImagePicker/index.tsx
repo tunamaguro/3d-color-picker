@@ -3,6 +3,7 @@ import { FileInputButton } from "./FileInputButton";
 
 import styles from "./styles.module.scss";
 import { PhotoIcon } from "./PhotoIcon";
+import { ImageCanvas } from "./ImageCanvas";
 
 export function ImagePicker() {
 	const [files, setFiles] = useState<File[]>([]);
@@ -32,10 +33,7 @@ export function ImagePicker() {
 			</div>
 
 			<button onClick={handleFileReset}>リセット</button>
-			{files.map((file) => {
-				const src = URL.createObjectURL(file);
-				return <img alt={file.name} src={src} />;
-			})}
+			{files[0] ? <ImageCanvas file={files[0]} /> : null}
 		</div>
 	);
 }
