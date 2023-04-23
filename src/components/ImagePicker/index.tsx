@@ -4,10 +4,12 @@ import { FileInputButton } from "./FileInputButton";
 import styles from "./styles.module.scss";
 import { PhotoIcon } from "./PhotoIcon";
 import { ImageCanvas } from "./ImageCanvas";
+import { useAddColors, useResetColors } from "../ColorProvider";
 
 export function ImagePicker() {
 	const [files, setFiles] = useState<File[]>([]);
-	const [colors, setColors] = useState<[number, number, number][]>([]);
+	const addColors = useAddColors();
+	const resetColors = useResetColors();
 	function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
 		const files = e.target.files;
 		if (files) {
@@ -16,7 +18,7 @@ export function ImagePicker() {
 	}
 	function handleFileReset() {
 		setFiles([]);
-		setColors([]);
+		resetColors();
 	}
 
 	return (
@@ -49,7 +51,7 @@ export function ImagePicker() {
 						const { data } = ctx?.getImageData(x, y, 1, 1);
 
 						const rgb = { r: data[0], g: data[1], b: data[2] };
-						setColors((colors) => [...colors, [rgb.r, rgb.g, rgb.b]]);
+						addColors([rgb.r, rgb.g, rgb.b]);
 					}}
 				/>
 			) : null}
