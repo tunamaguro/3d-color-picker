@@ -7,6 +7,7 @@ import { ImageCanvas } from "./ImageCanvas";
 
 export function ImagePicker() {
 	const [files, setFiles] = useState<File[]>([]);
+	const [colors, setColors] = useState<[number, number, number][]>([]);
 	function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
 		const files = e.target.files;
 		if (files) {
@@ -15,6 +16,7 @@ export function ImagePicker() {
 	}
 	function handleFileReset() {
 		setFiles([]);
+		setColors([]);
 	}
 
 	return (
@@ -41,11 +43,13 @@ export function ImagePicker() {
 						const x = e.clientX - rect.left;
 						const y = e.clientY - rect.top;
 
-						const ctx = e.currentTarget.getContext("2d")!;
+						const ctx = e.currentTarget.getContext("2d", {
+							willReadFrequently: true,
+						})!;
 						const { data } = ctx?.getImageData(x, y, 1, 1);
 
-						const rgba = { r: data[0], g: data[1], b: data[2] };
-						console.info(rgba);
+						const rgb = { r: data[0], g: data[1], b: data[2] };
+						setColors((colors) => [...colors, [rgb.r, rgb.g, rgb.b]]);
 					}}
 				/>
 			) : null}
