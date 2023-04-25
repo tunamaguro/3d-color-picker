@@ -1,0 +1,12 @@
+$max-width: 768px;
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: $max-width;
+}

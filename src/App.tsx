@@ -6,12 +6,12 @@ import { Canvas } from "@react-three/fiber";
 
 import { useColorValue } from "./components/ColorProvider";
 import { HslCylinder } from "./components/HslCylinder";
-import style from "./style.module.scss";
+import { Wrapper } from "./components/Wrapper";
 
 function App() {
 	const colors = useColorValue();
 	return (
-		<main className={style.container}>
+		<Wrapper>
 			<ImagePicker />
 			<Canvas
 				style={{
@@ -34,7 +34,7 @@ function App() {
 					);
 				})}
 			</Canvas>
-		</main>
+		</Wrapper>
 	);
 }
 
