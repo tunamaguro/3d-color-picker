@@ -3,7 +3,8 @@ import { Sphere } from "../Sphere";
 import range from "just-range";
 
 const baseR = 10;
-const hue = range(0, 360, 10);
+const hueAngle = 10;
+const hue = range(0, 360, hueAngle);
 const saturation = range(10, 101, 15);
 const lightness = range(0, 101, 10);
 /**
@@ -13,7 +14,9 @@ const lightness = range(0, 101, 10);
  */
 const concentricCircles = lightness.flatMap((l, light_idx) =>
 	hue.flatMap((h) =>
-		saturation.map((s) => new HslCoord((h + (light_idx % 2) * 10) % 360, s, l)),
+		saturation.map(
+			(s) => new HslCoord((h + ((light_idx % 2) * hueAngle) / 2) % 360, s, l),
+		),
 	),
 );
 
