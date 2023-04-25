@@ -77,7 +77,7 @@ export function ImageCanvas({ file, ...rest }: ImageCanvasProps) {
 			);
 		}
 		setImage();
-	}, []);
+	}, [file]);
 	return (
 		<canvas
 			{...rest}

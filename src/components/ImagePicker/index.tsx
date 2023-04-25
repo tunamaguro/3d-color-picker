@@ -40,7 +40,7 @@ export function ImagePicker() {
 			{files[0] ? (
 				<ImageCanvas
 					file={files[0]}
-					onClick={(e) => {
+					onMouseMove={(e) => {
 						const rect = e.currentTarget.getBoundingClientRect();
 						const x = e.clientX - rect.left;
 						const y = e.clientY - rect.top;

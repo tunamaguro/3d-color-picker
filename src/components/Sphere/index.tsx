@@ -5,12 +5,11 @@ import { Mesh } from "three";
 type Props = ThreeElements["mesh"] & {
 	color?: number | string;
 	position: [number, number, number];
+	size?: number;
 };
 
-export function Sphere({ color, position, ...props }: Props) {
+export function Sphere({ color, position, size = 0.1, ...props }: Props) {
 	const mesh = useRef<Mesh>(null!);
-
-	const size = position[2] === 0 ? 0.3 : 0.1;
 
 	return (
 		<mesh position={position} {...props} ref={mesh}>
