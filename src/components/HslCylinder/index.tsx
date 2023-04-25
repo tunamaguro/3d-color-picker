@@ -3,7 +3,7 @@ import { HslCoord } from "../../coord";
 import { Sphere } from "../Sphere";
 
 const baseR = 10;
-const hue = range(0, 360, 20);
+const hue = range(0, 360, 10);
 const saturation = range(10, 101, 15);
 const lightness = range(0, 101, 10);
 const concentricCircles = lightness.flatMap((l, light_idx) =>
