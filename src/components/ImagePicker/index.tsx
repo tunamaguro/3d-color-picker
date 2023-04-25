@@ -1,10 +1,10 @@
-import { ChangeEvent, useState } from "react";
 import { FileInputButton } from "./FileInputButton";
+import { ChangeEvent, useState } from "react";
 
-import styles from "./styles.module.scss";
-import { PhotoIcon } from "./PhotoIcon";
-import { ImageCanvas } from "./ImageCanvas";
 import { useAddColors, useResetColors } from "../ColorProvider";
+import { ImageCanvas } from "./ImageCanvas";
+import { PhotoIcon } from "./PhotoIcon";
+import styles from "./styles.module.scss";
 
 export function ImagePicker() {
 	const [files, setFiles] = useState<File[]>([]);

@@ -1,12 +1,12 @@
-import { Canvas } from "@react-three/fiber";
-import { Sphere } from "./components/Sphere";
-import { OrbitControls } from "@react-three/drei";
-import { RgbCoord } from "./coord";
 import { ImagePicker } from "./components/ImagePicker";
+import { Sphere } from "./components/Sphere";
+import { RgbCoord } from "./coord";
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 
-import style from "./style.module.scss";
 import { useColorValue } from "./components/ColorProvider";
 import { HslCylinder } from "./components/HslCylinder";
+import style from "./style.module.scss";
 
 function App() {
 	const colors = useColorValue();

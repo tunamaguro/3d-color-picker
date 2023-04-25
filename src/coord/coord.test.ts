@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { XyzCoord, HslCoord, RgbCoord } from "./index";
+import { HslCoord, RgbCoord, XyzCoord } from "./index";
+import { describe, expect, it } from "vitest";
 
 describe("coord", () => {
 	const deg2rad = Math.PI / 180;
