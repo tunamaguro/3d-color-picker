@@ -1,14 +1,16 @@
 import { PropsWithChildren } from "react";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 import style from "./style.module.scss";
 
 export function Wrapper({ children }: PropsWithChildren) {
 	return (
 		<div className={style.container}>
-			<header>Header</header>
+			<Header />
 			<div>
 				<main className={style.content}>{children}</main>
 			</div>
-			<footer>Footer</footer>
+			<Footer />
 		</div>
 	);
 }
