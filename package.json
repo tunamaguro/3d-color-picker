@@ -11,7 +11,7 @@
 		"coverage": "vitest run --coverage",
 		"format": "rome format src --write",
 		"lint": "rome check src --apply",
-		"check":"npm run format && npm run lint"
+		"check": "npm run format && npm run lint"
 	},
 	"dependencies": {
 		"@react-three/drei": "^9.58.4",
@@ -27,6 +27,7 @@
 		"@types/three": "^0.149.0",
 		"@vitejs/plugin-react-swc": "^3.0.0",
 		"@vitest/coverage-c8": "^0.29.8",
+		"modern-css-reset": "^1.4.0",
 		"rome": "12.0.0",
 		"sass": "^1.62.0",
 		"typescript": "^4.9.3",
