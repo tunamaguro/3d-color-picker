@@ -1,4 +1,4 @@
-import { turn3d, Matrix3, Vec3 } from "./matrix";
+import { Matrix3, Vec3, turn3d } from "./matrix";
 
 type Coord = {
 	to_vec(): unknown;

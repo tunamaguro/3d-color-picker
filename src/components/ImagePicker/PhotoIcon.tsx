@@ -6,7 +6,7 @@ import { SVGAttributes } from "react";
 type PhotoIconProps = Omit<SVGAttributes<HTMLOrSVGElement>, "children">;
 
 /**
- * 
+ *
  * @see https://heroicons.com/
  */
 export function PhotoIcon(props: PhotoIconProps) {

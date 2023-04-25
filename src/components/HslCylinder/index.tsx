@@ -1,6 +1,6 @@
-import range from "just-range";
 import { HslCoord } from "../../coord";
 import { Sphere } from "../Sphere";
+import range from "just-range";
 
 const baseR = 10;
 const hue = range(0, 360, 10);
