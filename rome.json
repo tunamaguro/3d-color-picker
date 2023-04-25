@@ -8,5 +8,8 @@
         "useKeyWithClickEvents":"warn"
       }
     }
-  }
+  },
+  "organizeImports": {
+    "enabled": true
+   }
 }
