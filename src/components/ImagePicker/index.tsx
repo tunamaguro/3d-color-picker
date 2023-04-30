@@ -34,9 +34,11 @@ export function ImagePicker() {
 					<PhotoIcon style={{ width: "2rem", height: "2rem" }} />
 					画像を選択
 				</FileInputButton>
+				<button className={styles.fileButton} onClick={handleFileReset}>
+					リセット
+				</button>
 			</div>
 
-			<button onClick={handleFileReset}>リセット</button>
 			{files[0] ? (
 				<ImageCanvas
 					file={files[0]}
@@ -45,6 +47,7 @@ export function ImagePicker() {
 						const x = e.clientX - rect.left;
 						const y = e.clientY - rect.top;
 
+						// rome-ignore lint/style/noNonNullAssertion: 絶対にcanvasが存在する予定
 						const ctx = e.currentTarget.getContext("2d", {
 							willReadFrequently: true,
 						})!;

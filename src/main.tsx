@@ -1,3 +1,5 @@
+import "modern-css-reset"
+
 import App from "./App";
 import { ColorProvider } from "./components/ColorProvider";
 import React from "react";

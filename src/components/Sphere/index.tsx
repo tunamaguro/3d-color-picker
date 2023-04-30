@@ -9,7 +9,7 @@ type Props = ThreeElements["mesh"] & {
 };
 
 export function Sphere({ color, position, size = 0.1, ...props }: Props) {
-	const mesh = useRef<Mesh>(null!);
+	const mesh = useRef<Mesh>(null);
 
 	return (
 		<mesh position={position} {...props} ref={mesh}>

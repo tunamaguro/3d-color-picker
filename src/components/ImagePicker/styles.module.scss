@@ -2,8 +2,9 @@ $wrapper-y-padding: 32px;
 $wrapper-x-padding: 16px;
 
 .wrapper {
-    display: grid;
+    display: flex;
     justify-content: center;
+    gap: 16px;
     padding: $wrapper-y-padding $wrapper-x-padding ;
     outline-width: 2px;
     outline-color: #38bdf8;
@@ -39,7 +40,8 @@ $button-border-width: 1px;
 
 }
 
-.canvas{
+.canvas {
     height: 60vh;
     width: 100%;
+    padding: 16px 0px;
 }
