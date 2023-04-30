@@ -1,0 +1,16 @@
+@use "style.module.scss" as c;
+
+.wrapper {
+    padding: 16px;
+    margin-bottom: 1rem;
+
+    border-width: 0px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #d1d5db;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: c.$max-width;
+}

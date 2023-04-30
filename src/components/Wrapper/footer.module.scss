@@ -1,0 +1,15 @@
+@use "style.module.scss" as c;
+
+.wrapper {
+    padding: 16px;
+
+    border-width: 0px;
+    border-top: 1px;
+    border-style: solid;
+    border-color: #d1d5db;
+}
+
+.content {
+    margin: 0 auto;
+    text-align: center;
+}
