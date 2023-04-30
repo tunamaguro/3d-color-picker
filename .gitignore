@@ -25,3 +25,10 @@ dist-ssr
 
 # Test coverage
 coverage
+
+# env
+.env*
+
+# firebase
+.firebaserc
+hosting*.cache

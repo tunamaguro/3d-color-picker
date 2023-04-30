@@ -1,4 +1,5 @@
-import "modern-css-reset"
+import "modern-css-reset";
+import "./firebase";
 
 import App from "./App";
 import { ColorProvider } from "./components/ColorProvider";
