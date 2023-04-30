@@ -34,9 +34,11 @@ export function ImagePicker() {
 					<PhotoIcon style={{ width: "2rem", height: "2rem" }} />
 					画像を選択
 				</FileInputButton>
+				<button className={styles.fileButton} onClick={handleFileReset}>
+					リセット
+				</button>
 			</div>
 
-			<button onClick={handleFileReset}>リセット</button>
 			{files[0] ? (
 				<ImageCanvas
 					file={files[0]}
