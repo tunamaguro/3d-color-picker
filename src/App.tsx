@@ -29,7 +29,7 @@ function App() {
 						<Sphere
 							position={rgb.to_hsl().to_xyz().to_vec()}
 							color={rgb.to_hex()}
-							size={0.4}
+							size={0.7}
 						/>
 					);
 				})}
